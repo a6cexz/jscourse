@@ -1,0 +1,49 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Task 2</title>
+</head>
+
+</html>
+
+<script>
+  // Ouput: 2010
+  // Explanation:
+  // 10 + 10 + '10'
+  // 20 + '10'
+  // '20' + '10'
+  // '2010'
+  console.log(10 + 10 + '10');
+
+  // Ouput: 101010
+  // Explanation:
+  // 10 + '10' + 10
+  // '10' + '10' + 10
+  // '10' + '10' + '10'
+  // '1010' + '10'
+  // '101010'
+  console.log(10 + '10' + 10);
+
+  // Ouput: 30
+  // Explanation:
+  // 10 + 10 + +'10'
+  // 10 + 10 + 10
+  // 20 + 10
+  // 30
+  console.log(10 + 10 + +'10');
+
+  // Ouput: -Infinity
+  // Explanation:
+  // 10 / -''
+  // 10 / -0
+  // -Infinity
+  console.log(10 / -'');
+
+  // Ouput: NaN
+  // Explanation:
+  // 10 / +'2,5'
+  // 10 / NaN
+  // NaN
+  console.log(10 / +'2,5');
+</script>
