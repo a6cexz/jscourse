@@ -1,0 +1,49 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Task 6</title>
+</head>
+
+</html>
+
+<script>
+  'use strict';
+
+  /**
+  * Returns money denomination to show to a user.
+  * @param {number} amount - The money amount.
+  * @return {string} The money denomination.
+  */
+  function getRubStr(amount) {
+    let firstDigit = amount % 10;
+    switch (firstDigit) {
+      case 0:
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+      case 9:
+        return 'рублей';
+      case 1:
+        return 'рубль';
+      case 2:
+      case 3:
+      case 4:
+        return 'рубля';
+    }
+  }
+
+  /**
+  * Shows account message
+  * @param {number} amount - The amount deposited.
+  */
+  function showAccountMessage(amount) {
+    let rubStr = getRubStr(amount);
+    let msg = 'Ваша сумма в ' + amount + ' ' + rubStr + ' успешно зачислена.';
+    alert(msg);
+  }
+
+  let num = +prompt('Enter money amount:');
+  showAccountMessage(num);
+</script>

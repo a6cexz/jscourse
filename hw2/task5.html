@@ -1,0 +1,77 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Task 5</title>
+</head>
+
+</html>
+
+<script>
+  'use strict';
+  /**
+  * Calculates the sum of the two numbers.
+  * @param {number} a - The first number.
+  * @param {number} b - The second number.
+  * @return {number} The sum a + b
+  */
+  function add(a, b) {
+    return a + b;
+  };
+
+  /**
+  * Calculates the difference of the two numbers.
+  * @param {number} a - The first number.
+  * @param {number} b - The second number.
+  * @return {number} The sum a - b
+  */
+  function sub(a, b) {
+    return a - b;
+  };
+
+  /**
+  * Calculates the division of the two numbers.
+  * @param {number} a - The first number.
+  * @param {number} b - The second number.
+  * @return {number} The sum a / b
+  */
+  function div(a, b) {
+    return a / b;
+  };
+
+  /**
+  * Calculates the multiplication of the two numbers.
+  * @param {number} a - The first number.
+  * @param {number} b - The second number.
+  * @return {number} The sum a * b
+  */
+  function mul(a, b) {
+    return a * b;
+  };
+
+  /**
+  * Performs one of the following math operations: +, -, /, *
+  * @param {number} arg1 - The first number.
+  * @param {number} arg2 - The second number.
+  * @param {string} operation - The operation name.
+  * @return {number} The result of the math operation.
+  */
+  function mathOperation(arg1, arg2, operation) {
+    switch (operation) {
+      case '+':
+        return add(arg1, arg2);
+      case '-':
+        return sub(arg1, arg2);
+      case '/':
+        return div(arg1, arg2);
+      case '*':
+        return mul(arg1, arg2);
+    }
+  }
+
+  let a = 20, b = 5;
+  alert(`${a} + ${b} = ` + mathOperation(a, b, '+'));
+  alert(`${a} - ${b} = ` + mathOperation(a, b, '-'));
+  alert(`${a} / ${b} = ` + mathOperation(a, b, '/'));
+  alert(`${a} * ${b} = ` + mathOperation(a, b, '*'));
+</script>
