@@ -1,0 +1,32 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Task 1</title>
+</head>
+
+</html>
+
+<script>
+  'use strict';
+
+  /**
+  * Prints numbers from 1 to 10
+  */
+  function printNumbers() {
+    let i = 0;
+    do {
+      if (i === 0) {
+        console.log(`${i} - это ноль.`);
+      } else if (i % 2 === 0) {
+        console.log(`${i} - это четное число.`);
+      }
+      else {
+        console.log(`${i} - это нечетное число.`);
+      }
+      i++;
+    } while (i < 11);
+  }
+
+  printNumbers();
+</script>

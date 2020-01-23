@@ -1,0 +1,41 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Task 4</title>
+</head>
+
+</html>
+
+<script>
+  'use strict';
+
+  /**
+  * Prints prime numbers from 0 to 100
+  */
+  function printPrimes() {
+    let i = 0;
+    while (i < 100) {
+      if (isPrimeNumber(i)) {
+        console.log(i);
+      }
+      i++;
+    }
+  }
+
+  /**
+   * Checks if the given number is prime
+   * @param {int} number The number to check.
+   * @returns {boolean} True if the number is prime.
+   */
+  function isPrimeNumber(number) {
+    let n = Math.floor(Math.sqrt(number));
+    for (let i = 2; i <= n; i++) {
+      if (number % i === 0)
+        return false;
+    }
+    return true;
+  }
+
+  printPrimes();
+</script>

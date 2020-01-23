@@ -1,0 +1,51 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Task 5</title>
+</head>
+
+</html>
+
+<script>
+  'use strict';
+
+  /**
+  * Calculates the sum of an array elements.
+  * @param {number[]} arr The array to calculate the sum.
+  * @returns {number} The sum of elements of the array.
+  */
+  function getSumOfElements(arr) {
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+      sum += arr[i];
+    }
+    return sum;
+  }
+
+  const arr = [
+    [2, 4, 6],
+    [1, 5, 10],
+    [7, 4, 1],
+  ];
+
+  let maxSumOfArrayIndex = 0;
+  let maxSumOfArray = getSumOfElements(arr[maxSumOfArrayIndex]);
+  for (let i = 1; i < arr.length; i++) {
+    let sum = getSumOfElements(arr[i]);
+    if (sum > maxSumOfArray) {
+      maxSumOfArray = sum;
+      maxSumOfArrayIndex = i;
+    }
+  }
+
+  let maxSumArray = arr[maxSumOfArrayIndex];
+  let minNumber = maxSumArray[0];
+  for (let i = 0; i < maxSumArray.length; i++) {
+    if (maxSumArray[i] < minNumber) {
+      minNumber = maxSumArray[i];
+    }
+  }
+
+  console.log(minNumber);
+</script>
