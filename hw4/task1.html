@@ -1,0 +1,55 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Task 1</title>
+</head>
+
+</html>
+
+<script>
+  'use strict';
+
+  /**
+  * Returns digit list for the given number.
+  * @param {number} num - The number to get digits.
+  * @return {number[]} The digits array.
+  */
+  function getDigitsList(num) {
+    let result = [];
+    while (num > 0) {
+      let rem = num % 10;
+      num = Math.floor(num / 10);
+      result.push(rem);
+    }
+    return result;
+  }
+
+  /**
+  * Returns object describing digits of the given number.
+  * @param {number} num - The number in [0..999] range to get digits.
+  * @return {{firstDigit: number, secondDigit: number, thirdDigit: number}} The digits array.
+  */
+  function getDigits(num) {
+    if (!Number.isInteger(num)) {
+      console.log("num is not a number");
+      return {};
+    }
+
+    if (num < 0 || num > 999) {
+      console.log("num should be in [0..999] range");
+      return {};
+    }
+
+    let digits = getDigitsList(num);
+    return {
+      firstDigit: digits[0],
+      secondDigit: digits[1],
+      thirdDigit: digits[2]
+    };
+  }
+
+  let num = 456;
+  let digits = getDigits(num);
+  alert(JSON.stringify(digits));
+</script>
