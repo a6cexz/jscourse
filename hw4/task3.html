@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Миллионер</title>
+</head>
+
+<body>
+  <script>
+    "use strict";
+
+    /**
+    * Создает объект вопроса для игры.
+    * @param {string} text Текст вопроса.
+    * @param {string[]} options Варианты ответов.
+    * @param {number} answer Индекс правильного ответа.
+    * @returns {{text: string, options:string[], answer: number}} Объект вопроса
+    */
+    function getQuestion(text, options, answer) {
+      return {
+        text: text,
+        options: options,
+        answer: answer
+      };
+    }
+
+    /**
+     * Объект с настройками игры.
+     * @property {int} points Количество набранных очков в игре.
+     * @property {int} colsCount Количество колонок в карте.
+     * @property {int} startPositionX Начальная позиция игрока по X координате.
+     * @property {int} startPositionY Начальная позиция игрока по Y координате.
+     */
+    const settings = {
+      questions: [
+        getQuestion('Чем едят суп?', ['вилкой', 'ложкой', 'совочком', 'руками'], 1),
+        getQuestion('Что чаще всего вешают на елку?', ['шарики', 'кубики', 'тюбики', 'зубики'], 0),
+        getQuestion('Что растет на дубе?', ['шишки', 'яблоки', 'желуди', 'златая цепь'], 2),
+        getQuestion('Во что превращается вода на морозе?', ['в пар', 'в лед', 'в газ', 'в кисель'], 1),
+      ],
+    };
+
+    /**
+     * Объект игры, здесь будут все методы и свойства связанные с самой игрой в общем.
+     * @property {settings} settings Настройки игры.
+     * @property {player} player Игрок, участвующий в игре.
+     */
+    const game = {
+      settings,
+      points: 0,
+      currentQuestion: {},
+      questionIdx: -1,
+
+      /**
+       * Запускает игру.
+       */
+      run() {
+        this.points = 0;
+        this.currentQuestion = {};
+        this.questionIdx = 0;
+        while (true) {
+          if (this.questionIdx >= this.settings.questions.length) {
+            alert('Игра окончена. Ваш счет: ' + this.points);
+            return;
+          }
+          const answer = this.nextAnswer();
+          if (answer === -1) {
+            alert('До свидания.');
+            return;
+          }
+          if (this.isCorrectAnswer(answer)) {
+            this.points++;
+            alert('Правильный ответ!');
+          } else {
+            alert('Неправильно!');
+          }
+        }
+      },
+
+      /**
+       * Проверяет правильность ответа
+       * @returns {boolean} Возвращает true если ответ верен
+       */
+      isCorrectAnswer(answer) {
+        return this.currentQuestion.answer === answer;
+      },
+
+      /**
+       * Возвращает следующий вопрос пользователю
+       * @returns {{text: string, options:string[], answer: number}} Объект вопроса
+       */
+      nextQuestion() {
+        let result = this.settings.questions[this.questionIdx];
+        this.currentQuestion = result;
+        this.questionIdx++;
+        return result;
+      },
+
+      /**
+       * Показывает вопрос пользователю и запрашивает ответ.
+       * @returns {int} Возвращаем индекс варианта ответа выбранного пользователем.
+       */
+      nextAnswer() {
+        let question = this.nextQuestion();
+        while (true) {
+          let msg = question.text + '\n';
+          msg += 'Введите номер варианта ответа:\n';
+          for (let i = 0; i < question.options.length; i++) {
+            msg += (i + 1) + '. ' + question.options[i] + '\n';
+          }
+          const answer = parseInt(prompt(msg)) - 1;
+          if (answer < 0)
+            return answer;
+          if (!Number.isInteger(answer) || answer < 0 || answer >= question.options.length) {
+            alert("Для продолжения игры необходимо выбрать один из вариантов, или -1 для остановки");
+            continue;
+          }
+          return answer;
+        }
+      },
+    };
+
+    game.run();
+  </script>
+</body>
+
+</html>
