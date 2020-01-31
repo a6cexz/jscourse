@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Шахматы</title>
+  <style>
+    table {
+      margin: auto;
+      border-collapse: collapse;
+    }
+
+    tr {
+      width: 50px;
+      height: 50px;
+    }
+
+    td {
+      border: 1px solid #888888;
+      width: 50px;
+      height: 50px;
+      background-color: #EEEEEE;
+      text-align: center;
+      font-size: 2em;
+    }
+
+    .empty {
+      border: none;
+      width: 50px;
+      height: 50px;
+      background-color: #EEEEEE;
+      text-align: center;
+      font-size: 2em;
+    }
+  </style>
+</head>
+
+<body>
+  <table id="game"></table>
+  <script>
+    'use strict';
+
+    /**
+     * @property { HTMLElement } gameContainerEl Контейнер игры(DOM элемент).
+    */
+    const chess = {
+      gameContainerEl: document.getElementById('game'),
+
+      /**
+       * Метод отображения карты (игрового поля).
+       */
+      renderMap() {
+        const cols = ['', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', ''];
+        for (let row = 0; row < 10; row++) {
+          const tr = document.createElement('tr');
+          this.gameContainerEl.appendChild(tr);
+          for (let col = 0; col < 10; col++) {
+            let isInside = row >= 1 && row <= 8 && col >= 1 && col <= 8;
+            if (isInside) {
+              const td = document.createElement('td');
+              tr.appendChild(td);
+              if (this.isCellIsBlack(row, col)) {
+                td.style.backgroundColor = 'grey';
+              }
+            } else {
+              const td = document.createElement('td');
+              td.setAttribute("class", "empty");
+              tr.appendChild(td);
+              if (row === 0 || row === 9) {
+                td.innerHTML = cols[col];
+              }
+              if (col === 0 || col === 9) {
+                if (row !== 0 && row !== 9)
+                  td.innerHTML = 9 - row;
+              }
+            }
+          }
+        }
+      },
+
+      /**
+       * Определяет является ли ячейка черной.
+       * @param {int} rowNum Номер в строке.
+       * @param {int} colNum Номер в колонке.
+       * @returns {boolean} true, если ячейка должна быть черной, иначе false.
+       */
+      isCellIsBlack(rowNum, colNum) {
+        if ((colNum + 1) % 2) {
+          return (rowNum) % 2;
+        }
+        if ((rowNum + 1) % 2) {
+          return (colNum) % 2;
+        }
+        return false;
+      },
+    };
+
+    // Запускаем метод отображения карты.
+    chess.renderMap();
+  </script>
+</body>
+
+</html>
