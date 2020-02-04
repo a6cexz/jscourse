@@ -1,0 +1,9 @@
+Если бы мы написали вот так:
+closeImageElement.addEventListener('click', this.close);
+
+то в данном случае this.close это функция объявленная в нашем текущем контексте, в текущем объекте.
+
+В таком же случае:
+closeImageElement.addEventListener('click', () => this.close());
+
+this - может оказаться другим объектом из контекста вызова нашей arrow функции () => this.close().
